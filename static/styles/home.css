@@ -1,0 +1,51 @@
+body{
+    background-image: linear-gradient(red, rgb(226, 139, 200));
+    background-repeat: no-repeat;
+    /* background-size: 100%; */
+    width: 100vw;
+    height: 100vh;
+}
+
+
+.my-nav{
+    background-color: rgb(0, 54, 153);
+}
+.my-nav .navbar-brand{
+    color: white;
+    font-size: 21px;
+    font-weight: bold;
+}
+.my-nav .navbar-brand:hover{
+    color:  rgb(189, 208, 243);
+}
+
+.my-nav .nav-link{
+    color: white;
+    font-size: 18px;
+    font-variant: small-caps;
+    
+}
+.my-nav .nav-link:hover{
+    color:rgb(20, 151, 238) ;
+}
+.kunal .navbar-toggler{
+    border-color: white;
+    background-color: rgb(250, 234, 11);
+    
+}
+.kunal .navbar-toggler-icon{
+    background-image: url(/images/cons5.webp);
+
+}
+
+
+.choosects input{
+    margin-top: 200px;
+    background-color: rgb(92, 85, 81);
+    border: 1px solid white;
+    border-radius: 30px;
+    color: white;
+}
+.choosects button{
+    background-color: rgb(92, 85, 81);
+}
