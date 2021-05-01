@@ -5,8 +5,11 @@ from django.conf.urls.static import static
 
 urlpatterns=[
     path('',views.home,name='home'),
-    path('enyc/',views.enyc,name='enyc'),
-    path('deyc/',views.deyc,name='deyc'),
+    path('encryption/',views.enyc,name='enyc'),
+    path('decryption/',views.deyc,name='deyc'),
+    path('login/',views.login,name='login'),
+    path('logout/',views.logout,name='logout'),
+    path('signup/',views.signup,name='signup'),
     
     # path('done/',views.done,name='done'),
     # path('del/',views.dele,name='del')
