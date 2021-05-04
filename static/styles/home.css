@@ -76,3 +76,10 @@ body{
 .choosects a{
     background-color: rgb(92, 85, 81);
 }
+#sel1{
+    width:140px;
+    margin: auto;
+}
+#brand, .greet{
+    color: aqua;
+}

@@ -23,20 +23,15 @@
 
         <div class="container">
             <!-- Brand -->
-            <a class="navbar-brand" href="/">HOME</a>
+            <a class="navbar-brand" id="brand" href="/">HOME</a>
 
-            <!-- Toggler/collapsibe Button -->
-            <button class="navbar-toggler navbar-toggler-right kunal" type="button" data-toggle="collapse"
-                data-target="#collapsibleNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
             <!-- Navbar links -->
-            <div class="collapse navbar-collapse text-center" id="collapsibleNavbar">
+            <div class="navbar" id="collapsibleNavbar">
                 <ul class="navbar-nav ml-auto px-5">
                     {% if user.is_authenticated %}
                         <li>
-                            <h3>
+                            <h3 class="greet">
                                 Welcome {{user.username}}
                             </h3>
                         </li>
@@ -69,17 +64,26 @@
             {% else %}
             <section>
                 <div class="container">
-                    <div style="background-color: white; color:green ;margin-top:2rem;">
+                    <div class="message">
                         {% for message in messages %}
-                        <h3>{{message}}</h3>
+                        <h3 {% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{message}}</h3>
                         {% endfor %}
                     </div>
                     <div class="row">
                         <div class="col-md-12 text-center choosects  ">                    
                             <form action="encryption/" method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
-                                <input type="file" name="file1" id="file">
-                                <input type="submit" class="fadeIn fourth" value="Encrypt">
+                                <div class="form-group>
+                                    <label for="sel1">Select user:</label>
+                                    <select class="form-control" name="username" id="sel1">
+                                        <option>Select..</option>
+                                        {% for user in Users%}
+                                        <option>{{user.username}}</option>
+                                        {% endfor %}
+                                    </select>
+                                  </div>
+                                <input type="file" name="file1" id="file" required>
+                                <input type="submit" class="fadeIn fourth" value="Send File">
                                 
                             </form>
 
