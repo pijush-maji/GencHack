@@ -92,17 +92,28 @@ def signup(request):
         password1=request.POST['password1']
         password2=request.POST['password2']
         email=request.POST['email']
+        if(username==""):
+            messages.warning(request,"Enter a username")
+            return redirect('/signup')
+        if(email==""):
+            messages.warning(request,"Enter your email")
+            return redirect('/signup')
+        if(password1==""):
+            messages.warning(request,"Please enter a password")
+            return redirect('/signup')
+        
         if password1==password2:
             if User.objects.filter(username=username).exists():
-                messages.info(request,"Username Taken")
+                messages.warning(request,"Username Taken")
                 return redirect('signup')
             else:
                 user=User.objects.create_user(username=username,email=email,password=password1)
                 user.save()
+                messages.success(request,"User created Successfully!")
                 return redirect('login')
         else:
-            messages.info(request,"Password Not Matching!") 
-            return redirect('register')   
+            messages.warning(request,"Password Not Matching!") 
+            return redirect('signup')   
         return redirect('/')
     else:
         return render(request,'signup.html')
