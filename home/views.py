@@ -11,26 +11,36 @@ from .models import Files
 def home(request):
     if request.user.id!=None:
         files = Files.objects.all().filter(user=request.user).order_by('date')
-        all_users = User.objects.all().exclude(id=request.user.id)
         # all_users.remove("<User: "+str(request.user))
-        print(all_users)
-        return render(request,'home.html',{'files':files,'Users':all_users})
+        
+        return render(request,'home.html',{'files':files})
     return render(request,'home.html')
 
 
 def enyc(request):
     # print(request.POST['file'])
-    if request.POST['username']=="Select..":
+    if request.POST['username']=="":
         messages.warning(request,"Please select an user!!")
         return redirect("/")
+    try:
+        user = User.objects.get(username=request.POST['username'])
+    except:
+        messages.warning(request,"User does not exist.")
+        return redirect("/")
+    if request.user.id==user.id:
+        messages.warning(request,"Please select other user")
+        return redirect("/")
     current_path=(os.getcwd())
-    myfile = request.FILES['file1']
+    try:
+        myfile = request.FILES['file1']
+    except:
+        messages.warning(request,"Please select a file")
+        return redirect("/")
     fs = FileSystemStorage() #defaults to   MEDIA_ROOT 
    
     filename = fs.save(myfile.name, myfile)
-    file_url = fs.url(filename)
-    user = User.objects.get(username=request.POST['username'])
-    f = Files.objects.create(user=user,title=filename+".enc")
+    file_url = fs.url(filename)    
+    f = Files.objects.create(user=user,title=filename+".enc",from_user=str(request.user))
     key = b'[EX\xc8\xd5\xbfI{\xa2$\x05(\xd5\x18\xbf\xc0\x85)\x10nc\x94\x02)j\xdf\xcb\xc4\x94\x9d(\x9e'
     enc = encryption.Encryptor(key) 
     os.chdir(current_path+"\media")
@@ -51,7 +61,6 @@ def deyc(request):
         file_name = file
         enc.decrypt_file(file_name)
         file = file[:len(file)-4]
-        print(file) 
         with open(file, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file)
@@ -61,7 +70,7 @@ def deyc(request):
         f.delete()
         return response
     except:
-        messages.warning(request,"Please select a file to decrypt")
+        messages.warning(request,"Please select a file to download")
         return redirect('/') 
     # os.chdir(current_path)
     # return HttpResponse('Decryption Done')

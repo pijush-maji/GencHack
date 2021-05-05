@@ -1,5 +1,5 @@
 body{
-    background-image: linear-gradient(red, rgb(226, 139, 200));
+    /* background-image: linear-gradient(red, rgb(226, 139, 200)); */
     background-repeat: no-repeat;
     /* background-size: 100%; */
     width: 100vw;
@@ -11,7 +11,6 @@ body{
     background-color: rgb(0, 54, 153);
 }
 .my-nav .navbar-brand{
-    color: white;
     font-size: 21px;
     font-weight: bold;
 }
@@ -28,16 +27,6 @@ body{
 .my-nav .nav-link:hover{
     color:rgb(20, 151, 238) ;
 }
-.kunal .navbar-toggler{
-    border-color: white;
-    background-color: rgb(250, 234, 11);
-    
-}
-.kunal .navbar-toggler-icon{
-    background-image: url(/images/cons5.webp);
-
-}
-
 
 .choosects input{
     margin-top: 100px;
@@ -78,8 +67,21 @@ body{
 }
 #sel1{
     width:140px;
-    margin: auto;
+    margin-left: initial;
 }
 #brand, .greet{
     color: aqua;
+}
+#send-btn,#dec-btn{
+    float: left;
+    margin-top: 7px;
+}
+#file1{
+    margin: auto;
+    width: 15vw;
+    margin-left: 9px;
+}
+.enc-form{
+    margin-top: 25px;
+    margin-left: 33%;
 }
