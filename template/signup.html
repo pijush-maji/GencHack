@@ -12,7 +12,7 @@
 		<link href="{% static 'styles/home.css' %}" rel="stylesheet">
 </head>
 
-<body>
+<body class="login-signup-background" style="background-image: url({% static 'account.jpg' %});">
 	<nav class="navbar navbar-expand-lg my-nav">
 
 		<div class="container">
@@ -28,6 +28,11 @@
 	</nav>
 
 	<div class="container">
+		<div class="message">
+			{% for message in messages %}
+			<p {% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{message}}</p>
+			{% endfor %}
+		</div>
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
 				<div class="d-flex justify-content-center">
@@ -69,17 +74,12 @@
 				</div>
 
 				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
+					<div class="d-flex justify-content-center links" style="color: aliceblue;">
 						Already have an account? <a href="/login/" class="ml-2">Login</a>
 					</div>
 				</div>
 			</div>
 
-		</div>
-		<div class="message">
-			{% for message in messages %}
-			<h3 {% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{message}}</h3>
-			{% endfor %}
 		</div>
 	</div>
 	<script>

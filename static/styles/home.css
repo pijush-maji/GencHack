@@ -2,20 +2,37 @@ body{
     /* background-image: linear-gradient(red, rgb(226, 139, 200)); */
     background-repeat: no-repeat;
     /* background-size: 100%; */
-    width: 100vw;
+    width: auto;
     height: 100vh;
 }
-
-
+.main_outside{
+    height: 100%;
+    width: 100%;
+    background-size: 80%;
+    color:rgb(54, 30, 30);
+    font-weight: bolder;
+}
+#authentication_part{
+    color:blanchedalmond;
+    font-size: large;
+}
+.login-signup-background{
+    height: 100%;
+    width: auto;
+    background-size:cover;
+}
+#form-title{
+    color: rgb(240, 230, 230);
+}
 .my-nav{
-    background-color: rgb(0, 54, 153);
+    background-color: rgb(31, 31, 32);
 }
 .my-nav .navbar-brand{
     font-size: 21px;
     font-weight: bold;
 }
 .my-nav .navbar-brand:hover{
-    color:  rgb(189, 208, 243);
+    color:  rgb(255, 255, 255);
 }
 
 .my-nav .nav-link{
@@ -25,16 +42,24 @@ body{
     
 }
 .my-nav .nav-link:hover{
-    color:rgb(20, 151, 238) ;
+    color:rgb(242, 246, 248) ;
 }
 
-.choosects input{
+#file1{
     margin-top: 100px;
-    background-color: rgb(92, 85, 81);
+    background-color:rgb(92, 184, 92);
     border: 2px solid white;
     border-radius: 30px;
     padding: 8px;
     color: white;
+    font-size: large;
+    margin: auto;
+    width: 18vw;
+    margin-left: 9px;
+}
+#send-btn{
+    padding : 10px 15px ;
+    font-size: large;
 }
 .encdec{
     display: grid;
@@ -76,12 +101,14 @@ body{
     float: left;
     margin-top: 7px;
 }
-#file1{
-    margin: auto;
-    width: 15vw;
-    margin-left: 9px;
-}
 .enc-form{
     margin-top: 25px;
     margin-left: 33%;
+}
+.d-flex justify-content-center links{
+    color: honeydew;
+}
+.message{
+    text-align: center;
+    padding-top: 2vh;
 }

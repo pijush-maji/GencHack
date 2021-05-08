@@ -17,8 +17,6 @@
 </head>
 
 <body>
-
-
     <nav class="navbar navbar-expand-lg my-nav">
 
         <div class="container">
@@ -30,15 +28,15 @@
             <div class="navbar" id="collapsibleNavbar">
                 <ul class="navbar-nav ml-auto px-5">
                     {% if user.is_authenticated %}
-                        <li>
-                            <h3 class="greet">
-                                Welcome {{user.username}}
-                            </h3>
-                        </li>
-                        <li style="margin-left: 2rem;">
-                            <button type="button" class="btn btn-light" style="border-radius: 35px;padding: 5px 20px;">
-                                <a style="text-decoration:none;" href="logout/">Logout</a></button>
-                        </li>
+                    <li>
+                        <h3 class="greet">
+                            Welcome {{user.username}}
+                        </h3>
+                    </li>
+                    <li style="margin-left: 2rem;">
+                        <button type="button" class="btn btn-light" style="border-radius: 35px;padding: 5px 20px;">
+                            <a style="text-decoration:none;" href="logout/">Logout</a></button>
+                    </li>
                     {% else %}
                     <li>
                         <button type="button" class="btn btn-light" style="border-radius: 35px;padding: 5px 20px;">
@@ -55,46 +53,49 @@
     </nav>
 
 
-    <section>
-        <div class="container">
+    <section class="main_outside" style="background-image: url({% static 'home.jpg' %})">
+        <div class="container" id="authentication_part">
             {% if not user.is_authenticated %}
-                <div>
-                    <h4 style="text-align: center;">Please login to start file sharing</h4>
-                </div>
+            <div>
+                <h1 style="text-align: center; font-family:cursive;">Please login to start file sharing</h4>
+            </div>
             {% else %}
             <section>
                 <div class="container" id="home">
                     <div class="message">
                         {% for message in messages %}
-                        <h3 {% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{message}}</h3>
+                        <p {% if message.tags %} class="text-{{ message.tags }}" {% endif %}>{{message}}</p>
                         {% endfor %}
                     </div>
                     <div class="row">
-                        <div class="col-md-12 text-center ">                    
+                        <div class="col-md-12 text-center ">
                             <form class="enc-form" action="encryption/" method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="form-group row">
-                                    <label for="exampleInputEmail1">Enter Username of Receiver : &nbsp;</label>
-                                    <input type="text" class="form-control input-lg" name="username" aria-describedby="emailHelp" id="sel1">
-                                    
-                                  </div>
-                                  <div class="form-group row">
-                                    <label for="exampleFormControlFile1">Select a file </label>
+                                    <label for="exampleInputEmail1"style="padding-top: 4px;" >Enter Username of Receiver : &nbsp;</label>
+                                    <input type="text" class="form-control input-lg" name="username"
+                                        aria-describedby="emailHelp" id="sel1">
+
+                                </div>
+                                <div class="form-group row">
+                                    <label for="exampleFormControlFile1" style="padding-top: 14px;">Select a file </label>
                                     <input type="file" name="file1" class="form-control-file" id="file1">
-                                  </div>
-                                  <button type="submit" id="send-btn" class="btn btn-primary">Send</button>
-                                
-                            </form>        
-                        </div>                        
-                    </div><br><br><hr><br><br>
+                                </div>
+                                <button type="submit" id="send-btn" class="btn btn-success">Send</button>
+
+                            </form>
+                        </div>
+                    </div><br><br>
+                    <hr><br><br>
                     {% if files %}
                     <div class="container">
                         <form class="enc-form" action="decryption/" method="POST" id="file_form">
                             {% csrf_token %}
-                           
+
                             {% for file in files%}
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="file" value={{ file.title }} id={{ file.title }}>
+                                <input class="form-check-input" type="radio" name="file" value={{ file.title }} id={{
+                                    file.title }}>
                                 <label class="form-check-label" for={{ file.title }}>{{ file.title }}</label><br>
                                 <small>From {{file.from_user}}</small>
                             </div>
@@ -111,12 +112,12 @@
 </body>
 <script>
 
-    $('#dec-btn').click(function(){
+    $('#dec-btn').click(function () {
         console.log("clicked")
-        setTimeout(function(){
+        setTimeout(function () {
             location.reload();
-        },1000);
-        
+        }, 1000);
+
     });
 </script>
 

@@ -20,7 +20,7 @@ def home(request):
 def enyc(request):
     # print(request.POST['file'])
     if request.POST['username']=="":
-        messages.warning(request,"Please select an user!!")
+        messages.warning(request,"Please select a user!!")
         return redirect("/")
     try:
         user = User.objects.get(username=request.POST['username'])
@@ -85,7 +85,7 @@ def login(request):
             auth.login(request,user)
             return redirect('/')
         else:
-            messages.info(request,"Invalid Credientials")
+            messages.warning(request,"Invalid Credientials")
             return redirect('login')
     else:
         return render(request,'login.html')
@@ -103,13 +103,13 @@ def signup(request):
         email=request.POST['email']
         if(username==""):
             messages.warning(request,"Enter a username")
-            return redirect('/signup')
+            return redirect('signup')
         if(email==""):
             messages.warning(request,"Enter your email")
-            return redirect('/signup')
+            return redirect('signup')
         if(password1==""):
             messages.warning(request,"Please enter a password")
-            return redirect('/signup')
+            return redirect('signup')
         
         if password1==password2:
             if User.objects.filter(username=username).exists():
